@@ -7,11 +7,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/about', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('about', { title: 'Express' });
 });
 
 router.get('/contact', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('contact', { title: 'Express' });
 });
 
 module.exports = router;
