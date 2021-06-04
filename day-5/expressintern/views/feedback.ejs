@@ -1,11 +1,18 @@
-<!--MENU-->
+<!-- <h1>Thank you for your Feedback</h1>
+<body>
+    Name : <%= name %><br>
+    Taste Rating : <%= rt1 %><br>
+    Cafe Rating : <%= rt2 %><br>
+    Total Rating: <%= total %><br>
+</body> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hardik's Cafe - Menu</title>
+  <title>feedback confirmation</title>
 <!-- 
 Cafe House Template
 http://www.templatemo.com/tm-466-cafe-house
@@ -33,7 +40,7 @@ http://www.templatemo.com/tm-466-cafe-house
       <div class="loader-section section-right"></div>
     </div>
     <!-- End Preloader -->
-    <%- include('header'); %> <!-- header portion --> 
+    <%- include('header'); %> <!-- header portion -->
     <section class="tm-welcome-section">
       <div class="container tm-position-relative">
         <div class="tm-lights-container">
@@ -42,50 +49,64 @@ http://www.templatemo.com/tm-466-cafe-house
           <img src="img/light.png" alt="Light" class="light light-3">  
         </div>        
         <div class="row tm-welcome-content">
-          <h2 class="white-text tm-handwriting-font tm-welcome-header"><img src="img/header-line.png" alt="Line" class="tm-header-line">&nbsp;Our Menus&nbsp;&nbsp;<img src="img/header-line.png" alt="Line" class="tm-header-line"></h2>
+          <h2 class="white-text tm-handwriting-font tm-welcome-header"><img src="img/header-line.png" alt="Line" class="tm-header-line">&nbsp;Thank you for your Feedback&nbsp;&nbsp;<img src="img/header-line.png" alt="Line" class="tm-header-line"></h2>
           <h2 class="gold-text tm-welcome-header-2">Hardik's Cafe</h2>
-          <p class="gray-text tm-welcome-description">Go through our exiciting and tempteting menu.</p>
-          <a href="#main" class="tm-more-button tm-more-button-welcome">Read More</a>      
+    
+          <div class="tm-footer-div-title">
+            Name : <%= name %><br>
+            Taste Rating : <%= rt1 %><br>
+            Cafe Rating : <%= rt2 %><br>
+            Total Rating: <%= total %><br>
         </div>
-        <img src="img/table-set.png" alt="Table Set" class="tm-table-set img-responsive">  
+        </div>
+        <img src="img/table-set.png" alt="Table Set" class="tm-table-set img-responsive">            
       </div>      
     </section>
     <div class="tm-main-section light-gray-bg">
-      <div class="container" id="main">         
-        <section class="tm-section row">
-          <div class="col-lg-12 tm-section-header-container margin-bottom-30">
-            <h2 class="tm-section-header gold-text tm-handwriting-font"><img src="img/logo.png" alt="Logo" class="tm-site-logo"> Our Menus</h2>
-            <div class="tm-hr-container"><hr class="tm-hr"></div>
-          </div>
-          <div>
-            <div class="col-lg-3 col-md-3">
-              <div class="tm-position-relative margin-bottom-30">              
-                <nav class="tm-side-menu">
-                  <ul>
-                    <li><a href="#" class="active">Affogato</a></li>
-                    <li><a href="#">Caffè Americano</a></li>
-                    <li><a href="#">Caffè latte</a></li>
-                    <li><a href="#">Coffee milk</a></li>
-                    <li><a href="#">Café mocha</a></li>
-                    <li><a href="#">Cappuccino</a></li>
-                    <li><a href="#">Espresso</a></li>
-                    <li><a href="#">Iced coffee</a></li>
-                    <li><a href="#">Instant coffee</a></li>
-                    <li><a href="#">Mocha</a></li>
-                    <li><a href="#">black coffee</a></li>
-                  </ul>              
-                </nav>    
-                <img src="img/vertical-menu-bg.png" alt="Menu bg" class="tm-side-menu-bg">
-              </div>  
-            </div>            
-          </div>          
-        </section>
+      <div class="container" id="main">
       </div>
     </div> 
     <%- include('footer'); %> <!-- Footer content-->  
    <!-- JS -->
    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
    <script type="text/javascript" src="js/templatemo-script.js"></script>      <!-- Templatemo Script -->
+   <script>
+      /* Google map
+      ------------------------------------------------*/
+      var map = '';
+      var center;
 
- </body>
- </html>
+      function initialize() {
+        var mapOptions = {
+          zoom: 16,
+          center: new google.maps.LatLng(13.758468,100.567481),
+          scrollwheel: false
+        };
+        
+        map = new google.maps.Map(document.getElementById('google-map'),  mapOptions);
+
+        google.maps.event.addDomListener(map, 'idle', function() {
+          calculateCenter();
+        });
+        
+        google.maps.event.addDomListener(window, 'resize', function() {
+          map.setCenter(center);
+        });
+      }
+
+      function calculateCenter() {
+        center = map.getCenter();
+      }
+
+      function loadGoogleMap(){
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' + 'callback=initialize';
+        document.body.appendChild(script);
+      }
+      $(document).ready(function(){                
+        loadGoogleMap();                
+      });
+      </script>
+    </body>
+    </html>
