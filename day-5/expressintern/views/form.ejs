@@ -76,7 +76,7 @@ http://www.templatemo.com/tm-466-cafe-house
           <h2 class="gold-text tm-welcome-header-2">Hardik's Cafe</h2>
           <p class="gray-text tm-welcome-description">Please enter the following details for the feedback !!</p>
 
-          <form method="POST" action="/form-process">
+          <form method="POST" action="/feedback">
             <table class="gray-text tm-welcome-description">
                 <tr>
                     <td>Name</td>
@@ -84,13 +84,23 @@ http://www.templatemo.com/tm-466-cafe-house
                 </tr>
 
                 <tr>
-                    <td>Taste(Out of 10)</td>
+                    <td>Mobile number</td>
+                    <td><input type="text" name='num' placeholder="Enter 10 digit no." required/></td>
+                </tr>
+
+                <tr>
+                    <td>coffee quality(outof 10)</td>
                     <td><input type="number" name='num1' placeholder="Enter number" required/></td>
                 </tr>
 
                 <tr>
-                    <td>Cafe(Out of 10)</td>
+                    <td>cleanliness(outof 10)</td>
                     <td><input type="number" name='num2' placeholder="Enter number" required/></td>
+                </tr>
+
+                <tr>
+                    <td>Suggestion</td>
+                    <td><textarea rows="4" cols="50" name="suggest" ></textarea></td>
                 </tr>
 
                 <tr>
