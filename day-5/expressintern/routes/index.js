@@ -60,16 +60,17 @@ router.post('/add-process', function(req, res, next) {
   }
   connection.query("insert into user_feedback set ?",mybodydata,function(err,result){
     if(err) throw err;
-    res.redirect('form');
+    res.redirect('/form');
   });
 });
-
-  router.get('/feedback', function(req, res, next) {
-    connection.query("select * from user_feedback",function(err,db_rows){
-      if(err) throw err;
-      console.log(db_rows);
-      res.render('feedback',{db_rows : db_rows});
-    });
+router.get('/feedback', function(req, res, next) {
+  connection.query("select * from user_feedback",function(err,db_rows){
+    if(err) throw err;
+    console.log(db_rows);
+    res.render('feedback',{db_row : db_rows});
+  });
 });
+  
 
 module.exports = router;
+
