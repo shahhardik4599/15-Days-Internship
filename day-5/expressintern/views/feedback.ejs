@@ -48,6 +48,7 @@ http://www.templatemo.com/tm-466-cafe-house
               <a href="/form" class="tm-more-button tm-more-button-welcome" type="submit">Add More Feedback</a>
               <table border="1">
                 <tr>
+                  <!-- <th>Sr no.</th> -->
                   <th>Name</th>
                   <th>Mobile Number</th>
                   <th>Coffee Rating(/10)</th>
@@ -56,23 +57,24 @@ http://www.templatemo.com/tm-466-cafe-house
                 </tr>
                 <% for(var i=0;i<db_row.length;i++){ %>
                   <tr>
+                    <!-- <td><%= db_row[i].Id %></td> -->
                     <td><%= db_row[i].Name %></td>
                     <td><%= db_row[i].Mob %></td>
                     <td><%= db_row[i].rt1 %></td>
                     <td><%= db_row[i].rt2 %></td>
                     <td><%= db_row[i].suggest %></td>
-                    <td><a> Edit </a></td>
-                    <td><a> Delete </a></td>
+                    <td>Edit | <a href='/delete/<%= db_row[i].Id %>'>Delete</a></td>
                   </tr>
                     
                     <% } %>
               </table>
             
             <% }else{ %>
+              <a href="/form" class="tm-more-button tm-more-button-welcome" type="submit">Add More Feedback</a>
                ----- No Record Found -----
                 <% }%>
             </div>      
-        </div>
+        </div><br><br><br><br><br>
         <img src="img/table-set.png" alt="Table Set" class="tm-table-set img-responsive">            
       </div>      
     </section>
