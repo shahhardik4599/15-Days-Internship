@@ -1,10 +1,41 @@
+<!-- <html>
+    <head>
+        <title>Cafe Feedback Form</title>
+    </head>
+    <body>
+        <h1>Cafe Feedback Form</h1>
+        <form method="POST" action="/form-process">
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name='name' placeholder="Enter Name" required/></td>
+                </tr>
+
+                <tr>
+                    <td>Taste(Out of 10)</td>
+                    <td><input type="number" name='num1' placeholder="Enter number" required/></td>
+                </tr>
+
+                <tr>
+                    <td>Cafe(Out of 10)</td>
+                    <td><input type="number" name='num2' placeholder="Enter number" required/></td>
+                </tr>
+
+                <tr>
+                    <td><input type="submit"/></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cafe House - Contact Info.</title>
+  <title>Cafe Feedback Form</title>
 <!-- 
 Cafe House Template
 http://www.templatemo.com/tm-466-cafe-house
@@ -41,40 +72,46 @@ http://www.templatemo.com/tm-466-cafe-house
           <img src="img/light.png" alt="Light" class="light light-3">  
         </div>        
         <div class="row tm-welcome-content">
-          <h2 class="white-text tm-handwriting-font tm-welcome-header"><img src="img/header-line.png" alt="Line" class="tm-header-line">&nbsp;User's Feedback&nbsp;&nbsp;<img src="img/header-line.png" alt="Line" class="tm-header-line"></h2>
+          <h2 class="white-text tm-handwriting-font tm-welcome-header"><img src="img/header-line.png" alt="Line" class="tm-header-line">&nbsp;Feedback Form&nbsp;&nbsp;<img src="img/header-line.png" alt="Line" class="tm-header-line"></h2>
           <h2 class="gold-text tm-welcome-header-2">Hardik's Cafe</h2>
-          <div style="text-align: center;" class="gray-text tm-welcome-description">
-            <% if(db_row.length > 0){%>
-              <a href="/form" class="tm-more-button tm-more-button-welcome" type="submit">Add More Feedback</a>
-              <table border="1">
+          <p class="gray-text tm-welcome-description">Please enter the following details for the feedback !!</p>
+          <form method="POST">
+            <table class="gray-text tm-welcome-description">
+                
                 <tr>
-                  <!-- <th>Sr no.</th> -->
-                  <th>Name</th>
-                  <th>Mobile Number</th>
-                  <th>Coffee Rating(/10)</th>
-                  <th>Cleanliness Rating(/10)</th>
-                  <th>Suggestion</th>
+                    <td>Name</td>
+                    <td><input type="text" name='name' value="<%= db_row[0].Name %>" required/></td>
                 </tr>
-                <% for(var i=0;i<db_row.length;i++){ %>
-                  <tr>
-                    <!-- <td><%= db_row[i].Id %></td> -->
-                    <td><%= db_row[i].Name %></td>
-                    <td><%= db_row[i].Mob %></td>
-                    <td><%= db_row[i].rt1 %></td>
-                    <td><%= db_row[i].rt2 %></td>
-                    <td><%= db_row[i].suggest %></td>
-                    <td><a href='/edit/<%= db_row[i].Id %>'>Edit</a> | <a href='/delete/<%= db_row[i].Id %>'>Delete</a></td>
-                  </tr>
-                    
-                    <% } %>
-              </table>
-            
-            <% }else{ %>
-              <a href="/form" class="tm-more-button tm-more-button-welcome" type="submit">Add More Feedback</a>
-               ----- No Record Found -----
-                <% }%>
-            </div>      
-        </div><br><br><br><br><br>
+        
+                <tr>
+                    <td>Mobile number</td>
+                    <td><input type="text" name='num' value="<%= db_row[0].Mob %>" required/></td>
+                </tr>
+        
+                <tr>
+                    <td>coffee quality(outof 10)</td>
+                    <td><input type="number" name='num1' value="<%= db_row[0].rt1 %>" required/></td>
+                </tr>
+        
+                <tr>
+                    <td>cleanliness(outof 10)</td>
+                    <td><input type="number" name='num2' value="<%= db_row[0].rt2 %>" required/></td>
+                </tr>
+        
+                <tr>
+                    <td>Suggestion</td>
+                    <td><textarea rows="4" cols="50" name="suggest" value="<%= db_row[0].suggest %>" required></textarea></td>
+                </tr>
+        
+                <tr>
+                    <td><input class="tm-more-button tm-more-button-welcome" type="submit"/></td>
+                    <td><a href="/feedback" class="tm-more-button tm-more-button-welcome" type="submit">Display</a></td>
+                </tr>
+            </table>
+        </form>
+          
+
+        </div>
         <img src="img/table-set.png" alt="Table Set" class="tm-table-set img-responsive">            
       </div>      
     </section>

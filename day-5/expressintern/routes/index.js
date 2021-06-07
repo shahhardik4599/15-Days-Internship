@@ -49,6 +49,7 @@ router.get('/form', function(req, res, next) {
 //   res.render('feedback',{rt1:r1,rt2:r2,name:name,total:total,mob:mob,suggest,suggest});
 // });
 
+//insert route
 router.post('/add-process', function(req, res, next) {
   console.log(req.body);
   const mybodydata={
@@ -64,6 +65,7 @@ router.post('/add-process', function(req, res, next) {
     res.redirect('/form');
   });
 });
+//display route
 router.get('/feedback', function(req, res, next) {
   connection.query("select * from user_feedback",function(err,db_rows){
     if(err) throw err;
@@ -71,7 +73,7 @@ router.get('/feedback', function(req, res, next) {
     res.render('feedback',{db_row : db_rows});
   });
 });
-
+//delete route
 router.get('/delete/:Id', function(req, res, next) {
   var deleteId = req.params.Id;
   connection.query("delete from user_feedback where Id = ?",[deleteId],function(err,db_rows){
@@ -81,7 +83,30 @@ router.get('/delete/:Id', function(req, res, next) {
   });
 });
   
-  
+//edit route 
+router.get('/edit/:Id', function(req, res, next) {
+  var editId = req.params.Id;
+  connection.query("select * from user_feedback where Id = ?",[editId],function(err,db_rows){
+    if(err) throw err;
+    console.log(db_rows);
+    res.render('edit',{db_row : db_rows});
+  });
+});
+
+router.post('/edit/:Id', function(req, res, next) {
+  var editId = req.params.Id;
+
+  var name = req.body.name;
+  var mob = parseInt(req.body.num);
+  var r1 = parseInt(req.body.num1);
+  var r2 = parseInt(req.body.num2);
+  var suggest = req.body.suggest;
+
+  connection.query("update user_feedback set Name= ?,Mob=?,rt1=?,rt2=?,suggest=? where Id = ?",[name,mob,r1,r2,suggest,editId],function(err,db_rows){
+    if(err) throw err;
+    res.redirect('/feedback');
+  });
+});
 
 module.exports = router;
 
